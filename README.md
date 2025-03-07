@@ -157,18 +157,18 @@ python
 
  *To Get Started*
 1. Install requirements:
-bash
+*bash*
 pip install fastapi uvicorn langchain transformers torch
 npm install next react react-dom
 
 
 2. Run backend:
-bash
+*bash*
 uvicorn main:app --reload
 
 
 3. Run frontend:
-bash
+*bash*
 cd frontend && npm run dev
 
 
