@@ -31,8 +31,9 @@ A simplified reference project architecture for an AI-powered MVP using open-sou
 
 *1. Frontend (Next.js) - app/page.tsx*
 typescript
-export default function Home() {
-  async function analyzeDocument(formData: FormData) {
+
+    export default function Home() {
+    async function analyzeDocument(formData: FormData) {
     'use server'
     const text = formData.get('text')
     
@@ -43,9 +44,9 @@ export default function Home() {
     })
     
     return await res.json()
-  }
+    }
 
-  return (
+    return (
     <main className="container mx-auto p-4">
       <form action={analyzeDocument} className="max-w-2xl space-y-4">
         <textarea 
@@ -62,38 +63,39 @@ export default function Home() {
         </button>
       </form>
     </main>
-  )
-}
+    )
+    }
 
 
 *2. Backend (FastAPI) - main.py*
 python
-from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
-from langchain.llms import HuggingFacePipeline
-from transformers import AutoTokenizer, pipeline
-import torch
 
-app = FastAPI()
+    from fastapi import FastAPI, HTTPException
+    from pydantic import BaseModel
+    from langchain.llms import HuggingFacePipeline
+    from transformers import AutoTokenizer, pipeline
+    import torch
 
-# Load local model (e.g., Mistral-7B)
-model_name = "mistralai/Mistral-7B-Instruct-v0.2"
-tokenizer = AutoTokenizer.from_pretrained(model_name)
-pipe = pipeline(
+    app = FastAPI()
+
+    # Load local model (... Mistral-7B)
+    model_name = "mistralai/Mistral-7B-Instruct-v0.2"
+    tokenizer = AutoTokenizer.from_pretrained(model_name)
+    pipe = pipeline(
     "text-generation",
     model=model_name,
     device_map="auto",
     torch_dtype=torch.float16
-)
+    )
 
-llm = HuggingFacePipeline(pipeline=pipe, max_new_tokens=256)
+    llm = HuggingFacePipeline(pipeline=pipe, max_new_tokens=256)
 
-class AnalysisRequest(BaseModel):
+    class AnalysisRequest(BaseModel):
     text: str
 
-@app.post("/analyze")
-async def analyze_document(request: AnalysisRequest):
-    try:
+    @app.post("/analyze")
+    async def analyze_document(request: AnalysisRequest):
+      try:
         prompt = f"""
         Analyze this document and provide:
         1. A 3-sentence summary
