@@ -121,13 +121,13 @@ python
    - Caching models locally after first download
 
 2. *AI Processing Flow*:
-   mermaid
-   flowchart LR
-   A[User Input] --> B[Text Preprocessing]
-   B --> C[Prompt Engineering]
-   C --> D[LLM Inference]
-   D --> E[Result Post-processing]
-   E --> F[API Response]
+   - mermaid
+   - flowchart LR
+  - A[User Input] --> B[Text Preprocessing]
+  - B --> C[Prompt Engineering]
+  - C --> D[LLM Inference]
+  - D --> E[Result Post-processing]
+  - E --> F[API Response]
    
 
 3. *Performance Considerations*:
